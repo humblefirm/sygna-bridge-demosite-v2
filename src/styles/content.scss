@@ -1,0 +1,104 @@
+@import "settings"; 
+@import "mixin";
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+body {
+    margin: 0;
+    font-family: $font-n;
+    font-weight: normal;
+    font-size: 14px;
+    letter-spacing: normal;
+    color: $body-color;
+    background-color: #F2F2F2;
+}
+
+a {
+    color: $blue;
+    @include transition(0.5s);
+    &:hover, &:active, &:focus {
+        color: #38B9E1;
+        outline: none;
+        text-decoration: none;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $title;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: $font-o;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    @media (min-width: $screen-xs) {
+        max-width: 540px;
+    }
+    @media (min-width: $screen-sm) {
+        max-width: 720px;
+    }
+    @media (min-width: $screen-md) {
+        max-width: 960px;
+    }
+    @media (min-width: $screen-lg) {
+        max-width: 1140px;
+    }
+    @media (min-width: 1440px) {
+        max-width: 1370px;
+    }
+    @media (min-width: 1920px) {
+        max-width: 1550px;
+    }
+}
+
+.title {
+    text-transform: capitalize;
+    letter-spacing: 0.05rem;
+    color: $title-gr !important;
+    font-weight: 600 !important;
+    font-family: $font-o !important;
+    font-size: 18px !important;
+    &.label_title {
+        color: $title !important;
+        font-size: 16px !important;
+    }
+}
+
+.border-form {
+    padding: 20px;
+    border: 1px solid rgba(16, 73, 53, 0.48);
+    box-sizing: border-box;
+    border-radius: 6px;
+    @include border-radius(6px);
+}
+
+#content {
+    .btn {
+        width: 100%;
+    }
+    .btn-primary {
+        background-color: $main-color;
+    }
+}
