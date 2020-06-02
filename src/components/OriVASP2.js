@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TransInfo from './OriVasp/TransferInfo';
+import BeneResult from './BeneInfo/BeneResult';
+import TransInfo2 from './OriVasp/TransferInfo2';
 import OriginInfo from './OriVasp/OriginInfo';
 
 const useStyles = makeStyles((theme) => ({
@@ -9,12 +10,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Originator () {
+export default function Originator2 () {
     const classes = useStyles();
     return (
         <React.Fragment>
             <main className={classes.layout}>
-                <TransInfo />
+                <BeneResult />
+                <TransInfo2 />
                 <OriginInfo />
             </main>
         </React.Fragment>

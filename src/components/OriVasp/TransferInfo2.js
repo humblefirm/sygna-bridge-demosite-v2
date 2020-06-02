@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function TransInfo () {
+export default function TransInfo2 () {
     const classes = useStyles();
     const margin = {
         margin: '30px 0'
@@ -54,9 +54,9 @@ export default function TransInfo () {
                     </Typography>
                     <FormControl variant="" fullWidth>
                         <Select id="currency" 
-                        value={CountryCode} onChange={handleChange} displayEmpty 
+                        defaultValue={2} onChange={handleChange} displayEmpty 
                         inputProps={{ 'aria-label': 'Without label' }} 
-                        classes={{ root: classes.root, }}>
+                        classes={{ root: classes.root, }} disabled>
                             <MenuItem value="" disabled>Select</MenuItem>
                             <MenuItem value={1}>BTC</MenuItem>
                             <MenuItem value={2}>ETH</MenuItem>
@@ -64,7 +64,7 @@ export default function TransInfo () {
                     </FormControl>
                 </Grid>
             </Grid>
-            <Grid container spacing={2}>
+                <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                     <Typography variant="h6" gutterBottom className="title label_title">
                         Amount
@@ -93,8 +93,9 @@ export default function TransInfo () {
                         required
                         id="amount_bene"
                         name="amount_bene"
-                        placeholder="Ex: 0.0047"
                         fullWidth
+                        value="0.0047"
+                        disabled
                     />
                 </Grid>
             </Grid>
@@ -105,9 +106,9 @@ export default function TransInfo () {
                     </Typography>
                     <FormControl variant="" fullWidth>
                         <Select id="bene-vasp" 
-                        value={CountryCode} onChange={handleChange} displayEmpty 
+                        defaultValue={2} onChange={handleChange} displayEmpty 
                         inputProps={{ 'aria-label': 'Without label' }} 
-                        classes={{ root: classes.root, }}>
+                        classes={{ root: classes.root, }} disabled>
                             <MenuItem value="" disabled>Select</MenuItem>
                             <MenuItem value={1}>VASP in USA</MenuItem>
                             <MenuItem value={2}>VASP in JP</MenuItem>
@@ -123,7 +124,8 @@ export default function TransInfo () {
                         id="bene_address"
                         name="bene_address"
                         fullWidth
-                        placeholder="0x0b696FEB926675a2f8B55644A1669b43b9924C03"
+                        value="0x0b696FEB926675a2f8B55644A1669b43b9924C03"
+                        disabled
                     />
                 </Grid>
             </Grid>

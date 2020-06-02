@@ -24,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const disableColor = {
+    color: '#222b45',
+}
+
 export default function OriginInfo () {
     const classes = useStyles();
     const margin = {
@@ -35,16 +39,16 @@ export default function OriginInfo () {
     };
     return (
         <React.Fragment>
-            <div className="border-form">
+            <div className="border_form boder_form_done">
                 <Typography variant="h6" gutterBottom className="title">
                     originator info
                 </Typography>
-                <Grid container spacing={1} className={classes.my_1}>
+                <Grid container spacing={2} className={classes.my_1}>
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom className="title label_title">
                             name
                         </Typography>
-                        <TextField
+                        <TextField style={disableColor }
                             required
                             id="name"
                             name="name"
@@ -69,7 +73,7 @@ export default function OriginInfo () {
                         </FormControl>
                     </Grid>
                 </Grid>
-                <Grid container spacing={1} className={classes.my_1}>
+                <Grid container spacing={2} className={classes.my_1}>
                     <Grid item xs={12}>
                         <Typography variant="h6" gutterBottom className="title label_title">
                         Originator Virtual Asset Address
@@ -84,7 +88,7 @@ export default function OriginInfo () {
                         />
                     </Grid>
                 </Grid>
-                <Grid container spacing={1} className={classes.my_1}>
+                <Grid container spacing={2} className={classes.my_1}>
                     <Grid item xs={12}>
                         <Typography variant="h6" gutterBottom className="title label_title">
                         Physical Address
@@ -99,7 +103,7 @@ export default function OriginInfo () {
                         />
                     </Grid>
                 </Grid>
-                <Grid container spacing={1} className={classes.my_1}>
+                <Grid container spacing={2} className={classes.my_1}>
                     <Grid item xs={12}>
                         <Typography variant="h6" gutterBottom className="title label_title">
                         Date of birth
@@ -113,7 +117,7 @@ export default function OriginInfo () {
                         />
                     </Grid>
                 </Grid>
-                <Grid container spacing={1} className={classes.my_1}>
+                <Grid container spacing={2} className={classes.my_1}>
                     <Grid item xs={12}>
                         <Typography variant="h6" gutterBottom className="title label_title">
                         Unique Identity
@@ -127,7 +131,7 @@ export default function OriginInfo () {
                         />
                     </Grid>
                 </Grid>
-                <Grid container spacing={1} className={classes.my_1}>
+                <Grid container spacing={2} className={classes.my_1}>
                     <Grid item xs={12}>
                         <Typography variant="h6" gutterBottom className="title label_title">
                         National Identity Number
