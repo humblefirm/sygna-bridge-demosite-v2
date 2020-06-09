@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '@material-ui/core'
+//import { Icon } from '@material-ui/core'
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -9,11 +9,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import PrivateInfo from './Private';
 
-const payments = [
+const transcations = [
     { name: 'Beneficiary Vasp Code', detail: 'VASPUSNY' },
-    { name: 'Originator Address', detail: '0x05ECAf39376088D7C8bF1aCc0601...' },
+    { name: 'Originator Address', detail: '0x05ECAf39376088D7C8bF1aCc06018D7C8bF1aCc0601' },
     { name: 'Originator VASP Code', detail: 'VASPJPJT' },
-    { name: 'Beneficiary Address', detail: '0x0b696FEB926675a2f8B55644A166...' },
+    { name: 'Beneficiary Address', detail: '0x0b696FEB926675a2f8B55644A1668D7C8bF1aCc060' },
     { name: 'Transaction Currency', detail: '0x8000003c' },
     { name: 'Amount', detail: '0.347895' },
 ];
@@ -26,9 +26,10 @@ const useStyles = makeStyles((theme) => ({
 
 const TestBtn = withStyles({
     root: {
-        marginBottom: '15px',
+        marginBottom: '0',
         padding: '8px 15px',
         lineHeight: 1.5,
+        fontSize: '14px',
         '&:hover': {
             boxShadow: 'none',
         },
@@ -37,6 +38,19 @@ const TestBtn = withStyles({
         },
     }
 })(Button);
+
+const TestIcon = {
+    marginRight: '5px',
+    fontSize: '32px',
+};
+
+const TestBlu = withStyles({
+    root: {
+        borderColor: '#006FB1',
+        color: '#006FB1',
+        wordWrap: 'break-word',
+    }
+})(Typography);
 
 const divider= {
     display: 'block',
@@ -49,22 +63,26 @@ const deepBlue = {
     color: '#006FB1',
 };
 
+const wordBreak = {
+    wordWrap: 'break-word',
+}
+
 export default function BeneInfo () {
     const classes = useStyles();
     const [verify, setVerify] = React.useState(true);
     return (
         <React.Fragment>
-            <ListItem>
-                <ListItemText style={deepBlue}>
-                <CheckCircleRoundedIcon />{verify ? '' : 'Verify Sucecss!'}
-                </ListItemText>
+            <ListItem disableGutters="true">
+                <ListItem style={{ padding:0, color: '#34C174', }} disableGutters="true">
+                    {verify ? '' :  <ListItem disableGutters="true"><CheckCircleRoundedIcon style={TestIcon} /><ListItem style={{fontFamily: 'Open Sans', paddingLeft: '0',}}>Verify Success!</ListItem></ListItem>}
+                </ListItem>
                 <Typography>
                 {verify ? (
                     <TestBtn onClick={() => setVerify(false)} variant="contained" className="btn btn-primary">
                         Verify
                     </TestBtn>
                     ) : (
-                    <TestBtn onClick={() => setVerify(true)} variant="contained" className="btn">
+                    <TestBtn onClick={() => setVerify(true)} variant="contained" className="btn btn-primary">
                         Decrypt
                     </TestBtn>
                 )}
@@ -76,26 +94,26 @@ export default function BeneInfo () {
                 </Typography>
                 <Grid container>
                     <Grid item xs={4} md={3}>
-                        <Typography gutterBottom variant="h6" gutterBottom className="title label_title">
+                        <Typography variant="h6" className="title label_title">
                             Private Info
                         </Typography>
                     </Grid>
                     <Grid item xs={8} md={9}>
-                        <Typography gutterBottom style={deepBlue}>04bb2aae0e33fbe50ffb6121375a4e...</Typography>
+                        <TestBlu style={deepBlue} className={classes.root}>04bb2aae0e33fbe50ffb6121375a4e04bb2aae0e33fbe50ffb6121375a4e04bb2aae0e33fbe50ffb6121375a4e04bb2aae0e33fbe50ffb6121375a4e04bb2aae0e33fbe50ffb6121375a4e</TestBlu>
                     </Grid>
                 </Grid>
                 <div style={divider}></div>
-                <Typography gutterBottom variant="h6" gutterBottom className="title label_title">
+                <Typography gutterBottom variant="h6" className="title label_title">
                     Transaction
                 </Typography>
                 <Grid container spacing={1} className={classes.padding}>
-                    {payments.map((payment) => (
-                        <React.Fragment key={payment.name}>
+                    {transcations.map((transcation) => (
+                        <React.Fragment key={transcation.name}>
                             <Grid item xs={4} md={3}>
-                                <Typography gutterBottom>{payment.name}</Typography>
+                                <Typography gutterBottom>{transcation.name}</Typography>
                             </Grid>
                             <Grid item xs={8} md={9}>
-                                <Typography gutterBottom style={deepBlue}>{payment.detail}</Typography>
+                                <TestBlu gutterBottom style={deepBlue, wordBreak}>{transcation.detail}</TestBlu>
                             </Grid>
                         </React.Fragment>
                     ))}
@@ -103,34 +121,34 @@ export default function BeneInfo () {
                 <div style={divider}></div>
                 <Grid container>
                     <Grid item xs={4} md={3}>
-                        <Typography gutterBottom variant="h6" gutterBottom className="title label_title">
+                        <Typography variant="h6" className="title label_title">
                         Date
                         </Typography>
                     </Grid>
                     <Grid item xs={8} md={9}>
-                        <Typography gutterBottom style={deepBlue}>2019-08-15T10:28:10.364Z</Typography>
+                        <Typography style={deepBlue, wordBreak}>2019-08-15T10:28:10.364Z</Typography>
                     </Grid>
                 </Grid>
                 <div style={divider}></div>
                 <Grid container>
                     <Grid item xs={4} md={3}>
-                        <Typography gutterBottom variant="h6" gutterBottom className="title label_title">
+                        <Typography variant="h6" className="title label_title">
                         Signature
                         </Typography>
                     </Grid>
                     <Grid item xs={8} md={9}>
-                        <Typography gutterBottom style={deepBlue}>9eee630c20a2aa894373216b32343c...</Typography>
+                        <Typography style={deepBlue, wordBreak}>9eee630c20a2aa894373216b32343c9eee630c20a2aa</Typography>
                     </Grid>
                 </Grid>
                 <div style={divider}></div>
                 <Grid container>
                     <Grid item xs={4} md={3}>
-                        <Typography gutterBottom variant="h6" gutterBottom className="title label_title">
+                        <Typography variant="h6" className="title label_title">
                         transfer ID
                         </Typography>
                     </Grid>
                     <Grid item xs={8} md={9}>
-                        <Typography gutterBottom style={deepBlue}>01ca7589-f697-4637-931e-aa8922...</Typography>
+                        <Typography style={deepBlue, wordBreak}>01ca7589-f697-4637-931e-aa8922-931e-aa8922</Typography>
                     </Grid>
                 </Grid>
             </div>

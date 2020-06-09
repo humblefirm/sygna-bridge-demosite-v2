@@ -98,7 +98,7 @@ export default function TransInfo () {
                     />
                 </Grid>
             </Grid>
-                <Grid container spacing={2} className={classes.my_1}>
+            <Grid container spacing={2} className={classes.my_1}>
                 <Grid item xs={12} sm={6}>
                     <Typography variant="h6" gutterBottom className="title label_title">
                         beneficiary VASP
