@@ -16,15 +16,15 @@ $fs-1: 1rem;
 ///////////////////////
 // colors /////////////
 $main-color: #104935;
-$btn-hover: #3C916B;
+$btn-hover: #3c916b;
 $body-color: #222b45;
 $title: #222b45;
-$title-gr: #42826B;
-$code-blue: #006FB1;
-$hint: #8F9BB3;
+$title-gr: #42826b;
+$code-blue: #006fb1;
+$hint: #8f9bb3;
 $white: #fff;
-$red: #CC2A32;
-$blue: #0090CE;
+$red: #cc2a32;
+$blue: #0090ce;
 ///////////////////////
 $alpha-3: 0.3;
 $alpha-5: 0.5;
@@ -39,3 +39,5 @@ $screen-xs-max: ($screen-xs - 1) !default;
 $screen-sm-max: ($screen-sm - 1) !default;
 $screen-md-max: ($screen-md - 1) !default;
 $screen-lg-max: ($screen-md - 1) !default;
+
+$underline: #222b45;
