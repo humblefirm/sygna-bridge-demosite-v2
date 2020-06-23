@@ -47,6 +47,7 @@ function Content() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [value, setValue] = React.useState(0);
   const [originatorReadOnly, setOriginatorReadOnly] = React.useState(false);
+  const [result, setResult] = React.useState('');
 
   const handleNext = () => {
     setValue(value + 1);
@@ -63,10 +64,21 @@ function Content() {
 
   const handleAcceptClick = () => {
     setOriginatorReadOnly(true);
+    setValue(0);
+    setActiveStep(activeStep + 1);
+    //
+    setResult('Accept');
   };
 
   const handleRejectClick = () => {
     setOriginatorReadOnly(true);
+    setValue(0);
+    setActiveStep(activeStep + 1);
+    setResult('Reject');
+  };
+
+  const handleDecryptClick = () => {
+    setActiveStep(activeStep + 1);
   };
 
   function getStepContent(getSteps) {
@@ -75,8 +87,10 @@ function Content() {
       case 0:
         return (
           <Originator
+            result={result}
             onSendClick={handleSendClick}
             readOnly={originatorReadOnly}
+            activeStep={activeStep}
           />
         );
       case 1:
@@ -84,12 +98,9 @@ function Content() {
           <BeneInfo
             onAcceptClick={handleAcceptClick}
             onRejectClick={handleRejectClick}
+            onDecryptClick={handleDecryptClick}
           />
         );
-      case 2:
-        return <Originator />;
-      case 3:
-        return <Originator />;
       default:
         throw new Error('Unknown step');
     }
@@ -119,8 +130,11 @@ function Content() {
               >
                 <div>
                   <StyledTabs value={value} onChange={handleChange}>
-                    <StyledTab label="Originator VASP" />
-                    <StyledTab label="Beneficiary Info" disabled={value < 1} />
+                    <StyledTab label="Originator VASP" disabled={value === 1} />
+                    <StyledTab
+                      label="Beneficiary Info"
+                      disabled={value === 0}
+                    />
                   </StyledTabs>
                   <Typography className={classes.padding} />
                 </div>

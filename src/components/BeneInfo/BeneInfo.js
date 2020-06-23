@@ -79,6 +79,8 @@ export default function BeneInfo(props) {
   const [verifyClicked, setVerifyClicked] = React.useState(false);
   const [decryptClicked, setDecryptClicked] = React.useState(false);
 
+  const { onAcceptClick, onRejectClick, onDecryptClick } = props;
+
   const renderActionButton = () => {
     if (decryptClicked) {
       return <Typography />;
@@ -87,7 +89,10 @@ export default function BeneInfo(props) {
       return (
         <Typography>
           <TestBtn
-            onClick={() => setDecryptClicked(true)}
+            onClick={() => {
+              setDecryptClicked(true);
+              onDecryptClick();
+            }}
             variant="contained"
             className="btn btn-primary"
           >
@@ -109,9 +114,6 @@ export default function BeneInfo(props) {
       </Typography>
     );
   };
-
-  const { onAcceptClick, onRejectClick } = props;
-
   return (
     <React.Fragment>
       <ListItem disableGutters="true">
@@ -206,11 +208,12 @@ export default function BeneInfo(props) {
           </Grid>
         </Grid>
       </div>
-      {decryptClicked ? <PrivateInfo /> : null}
-      <div>
-        <ActionButton text={'Accept'} onClick={onAcceptClick} />
-        <ActionButton text={'Reject'} onClick={onRejectClick} />
-      </div>
+      {decryptClicked ? (
+        <PrivateInfo
+          onAcceptClick={onAcceptClick}
+          onRejectClick={onRejectClick}
+        />
+      ) : null}
     </React.Fragment>
   );
 }
