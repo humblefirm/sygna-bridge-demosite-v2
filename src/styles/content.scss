@@ -119,6 +119,7 @@ h1, h2, h3, h4, h5, h6 {
     &.btn-danger {
         color: $white;
         background-color: $red;
+        margin-left: 20px;
         &:hover {
             background-color: lighten($red, 5%);
         }
@@ -127,7 +128,9 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 }
-
+.buttons {
+    text-align: center;
+}
 .MuiInput-underline {
     &:before {
         border-bottom: 1px solid $underline !important;
@@ -146,9 +149,3 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid rgba(16, 73, 53, 0.32);
     @include border-radius(20px);
 }
-
-// .MuiTabs-indicator {
-//     height: 6px;
-//     background-color: rgba(16, 73, 53, 0.32);
-//     @include border-radius(20px);
-// }

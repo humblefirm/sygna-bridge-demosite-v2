@@ -26,6 +26,11 @@ const deepBlue = {
   color: "#006FB1",
 };
 
+const grayTxt = {
+  marginTop: "5px",
+  color: "#8F9BB3",
+};
+
 const TestBlu = withStyles({
   root: {
     borderColor: "#006FB1",
@@ -34,8 +39,8 @@ const TestBlu = withStyles({
   },
 })(Typography);
 
-export default function BeneResult() {
-  const [verify, setVerify] = React.useState(true);
+export default function BeneResult(props) {
+  const {clickAccept} = props;
   return (
     <React.Fragment>
       <div className="border_form" style={marginTop}>
@@ -72,8 +77,9 @@ export default function BeneResult() {
               Result
             </Typography>
           </Grid>
+          {/* {console.log=(`clickAccept =${clickAccept}`)} */}
           <Grid item xs={8} md={9}>
-            {verify ? (
+            {clickAccept === true ? (
                 <Typography style={{ color: '#049956', }}>ACCEPT</Typography>
             ) : (
                 <Typography style={{ color: '#CC2A32', }}>REJECT</Typography>
@@ -94,6 +100,7 @@ export default function BeneResult() {
           </Grid>
         </Grid>
       </div>
+      <div style={grayTxt}>*This is the result from Beneficary VASP base on information below</div>
     </React.Fragment>
   );
 }
