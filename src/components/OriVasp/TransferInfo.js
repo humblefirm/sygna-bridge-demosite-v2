@@ -38,7 +38,7 @@ export default function TransInfo(props) {
   const marginTop = {
     marginTop: "30px",
   };
-  const { disable, transferInfo, handleChange, getError, error } = props;
+  const { disable, transferInfo, handleChange, getError } = props;
   const { currency, amount, b_name, vasp, address } = transferInfo;
 
   return (
@@ -52,7 +52,7 @@ export default function TransInfo(props) {
             <Typography variant="h6" gutterBottom className="title label_title">
               currency
             </Typography>
-            <FormControl fullWidth required error={error}>
+            <FormControl fullWidth required error={!!getError("currency")}>
               <Select
                 id="currency"
                 name="currency"
@@ -69,9 +69,9 @@ export default function TransInfo(props) {
                 <MenuItem value={"BTC"}>BTC</MenuItem>
                 <MenuItem value={"ETH"}>ETH</MenuItem>
               </Select>
-              <FormHelperText
-                helperText={getError("currency")}
-              ></FormHelperText>
+              {getError === true ? (
+                <FormHelperText>Here's my helper text</FormHelperText>
+              ) : null}
             </FormControl>
           </Grid>
         </Grid>
@@ -92,7 +92,7 @@ export default function TransInfo(props) {
               onChange={handleChange}
               inputProps={{ min: "0" }}
               helperText={getError("amount")}
-              error={error}
+              error={!!getError("amount")}
             />
           </Grid>
         </Grid>
@@ -116,7 +116,7 @@ export default function TransInfo(props) {
               disabled={disable}
               onChange={handleChange}
               helperText={getError("b_name")}
-              error={error}
+              error={!!getError("b_name")}
             />
           </Grid>
         </Grid>
@@ -125,7 +125,7 @@ export default function TransInfo(props) {
             <Typography variant="h6" gutterBottom className="title label_title">
               beneficiary VASP Code
             </Typography>
-            <FormControl fullWidth required error={error}>
+            <FormControl fullWidth required error={!!getError("vasp")}>
               <Select
                 id="vasp"
                 name="vasp"
@@ -135,6 +135,7 @@ export default function TransInfo(props) {
                 inputProps={{ "aria-label": "Without label" }}
                 classes={{ root: classes.root }}
                 disabled={disable}
+                helperText={getError("vasp")}
               >
                 <MenuItem value="" disabled>
                   Select
@@ -157,8 +158,8 @@ export default function TransInfo(props) {
               value={address}
               disabled={disable}
               onChange={handleChange}
-              error={error}
               helperText={getError("address")}
+              error={!!getError("address")}
             />
           </Grid>
         </Grid>

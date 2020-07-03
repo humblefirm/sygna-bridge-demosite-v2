@@ -152,7 +152,7 @@ const StyledTab = withStyles((theme) => ({
   },
 }))((props) => <Tab disableRipple {...props} />);
 
-function Content() {
+function Content(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -174,23 +174,20 @@ function Content() {
   const [clickAccept, setClickAccept] = React.useState(false);
   const [bo_vasp, setBovasp] = React.useState("-");
   const [disable, setDisable] = React.useState(false);
-  //const { handleSubmit } = props;
+  const [error, hasError] = React.useState(false);
+  const [inputErrors, setInputErrors] = React.useState({});
   const handleChange = (event) => {
     const obj = { ...transferInfo };
     obj[event.target.name] = event.target.value;
+    inputErrors[event.target.name] = "";
     setTransferInfo(obj);
+    // hasError(false);
   };
   const handleSend = () => {
     setValue(value + 1);
     setActiveStep(activeStep + 1);
     setBovasp(originInfo.o_vasp);
   };
-  // const handleSend = () => {
-  //   handleSubmit();
-  //   setValue(value + 1);
-  //   setActiveStep(activeStep + 1);
-  //   setBovasp(originInfo.o_vasp);
-  // };
   const handleDycrypt = () => {
     setActiveStep(activeStep + 1);
   };
@@ -208,13 +205,17 @@ function Content() {
     setActiveStep(activeStep + 1);
     setDisable(true);
   };
+  const handleError = () => {
+    hasError(true);
+  };
   function getStepContent(getSteps) {
     switch (getSteps) {
       case 0:
         return (
           <Originator
-            bo_vasp={bo_vasp}
+            error={error}
             handleSend={handleSend}
+            bo_vasp={bo_vasp}
             activeStep={activeStep}
             originInfo={originInfo}
             transferInfo={transferInfo}
@@ -222,6 +223,9 @@ function Content() {
             value={value}
             clickAccept={clickAccept}
             disable={disable}
+            onError={handleError}
+            inputErrors={inputErrors}
+            setInputErrors={setInputErrors}
           />
         );
       case 1:

@@ -53,7 +53,6 @@ function Bridge(props) {
           fullWidth
           InputProps={{ readOnly: true }}
         />
-        {console.log(`bo_vasp = ${bo_vasp}`)}
       </div>
     );
   }
@@ -106,12 +105,8 @@ function Bridge(props) {
           id="result"
           name="result"
           fullWidth
-          //InputProps={{ readOnly: true, color: "yellow" }}
           inputProps={{ readOnly: true, className: color() }}
           value={value()}
-          //className={color()}
-          //style={{ color: color() }}
-          //style={{ color: "blue" }}
         />
         {console.log(`clickAccept = ${clickAccept}`)}
       </div>
