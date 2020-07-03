@@ -1,7 +1,9 @@
-@import "settings"; 
+@import "settings";
 @import "mixin";
 
-*, ::after, ::before {
+*,
+::after,
+::before {
     box-sizing: border-box;
 }
 
@@ -23,7 +25,10 @@ body {
 a {
     color: $blue;
     @include transition(0.5s);
-    &:hover, &:active, &:focus {
+
+    &:hover,
+    &:active,
+    &:focus {
         color: #38B9E1;
         outline: none;
         text-decoration: none;
@@ -39,7 +44,12 @@ p {
     margin-bottom: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: $title;
     margin-top: 0;
     margin-bottom: 20px;
@@ -53,15 +63,19 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+
     @media (min-width: $screen-xs) {
         max-width: 540px;
     }
+
     @media (min-width: $screen-sm) {
         max-width: 720px;
     }
+
     @media (min-width: $screen-md) {
         max-width: 960px;
     }
+
     @media (min-width: $screen-lg) {
         max-width: 1140px;
     }
@@ -78,10 +92,12 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600 !important;
     font-family: $font-o !important;
     font-size: 18px !important;
+
     &.label_title {
         color: $title !important;
         font-size: 16px !important;
     }
+
     &.title_blue {
         color: #006FB1 !important;
     }
@@ -93,8 +109,10 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box;
     border-radius: 6px;
     @include border-radius(6px);
+
     &.boder_form_done {
         color: $title !important;
+
         .label_title {
             color: $title !important;
         }
@@ -106,37 +124,60 @@ h1, h2, h3, h4, h5, h6 {
     padding: 8px 20px !important;
     text-transform: capitalize !important;
     font-size: 14px !important;
+
     &.btn-primary {
         color: $white;
         background-color: $main-color;
+
         &:hover {
             background-color: $btn-hover;
         }
+
         &:active {
             background-color: #0B3E31;
         }
     }
+
     &.btn-danger {
         color: $white;
         background-color: $red;
         margin-left: 20px;
+
         &:hover {
             background-color: lighten($red, 5%);
         }
+
         &:active {
             background-color: darken($red, 10%);
         }
     }
 }
+
 .buttons {
     text-align: center;
 }
+
 .MuiInput-underline {
     &:before {
         border-bottom: 1px solid $underline !important;
     }
+
     &:after {
         border-bottom: 2px solid $main-color !important;
+    }
+
+    &.Mui-error:after {
+        border-color: #f44336 !important;
+    }
+}
+
+#result {
+    &.accept {
+        color: "#049956";
+    }
+
+    &.reject {
+        color: "#CC2A32";
     }
 }
 

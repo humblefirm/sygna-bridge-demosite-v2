@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,15 +38,9 @@ export default function TransInfo(props) {
   const marginTop = {
     marginTop: "30px",
   };
-  const { save, disable } = props;
-  const [currency, setCurrency] = React.useState(save);
-  const [vasp, setVasp] = React.useState("");
-  const handleCurrency = (event) => {
-    setCurrency(event.target.value);
-  };
-  const handleVasp = (event) => {
-    setVasp(event.target.value);
-  };
+  const { disable, transferInfo, handleChange, getError, error } = props;
+  const { currency, amount, b_name, vasp, address } = transferInfo;
+
   return (
     <React.Fragment>
       <div style={margin}>
@@ -57,11 +52,12 @@ export default function TransInfo(props) {
             <Typography variant="h6" gutterBottom className="title label_title">
               currency
             </Typography>
-            <FormControl variant="" fullWidth>
+            <FormControl fullWidth required error={error}>
               <Select
                 id="currency"
+                name="currency"
                 value={currency}
-                onChange={handleCurrency}
+                onChange={handleChange}
                 displayEmpty
                 inputProps={{ "aria-label": "Without label" }}
                 classes={{ root: classes.root }}
@@ -70,9 +66,12 @@ export default function TransInfo(props) {
                 <MenuItem value="" disabled>
                   Select
                 </MenuItem>
-                <MenuItem value={1}>BTC</MenuItem>
-                <MenuItem value={2}>ETH</MenuItem>
+                <MenuItem value={"BTC"}>BTC</MenuItem>
+                <MenuItem value={"ETH"}>ETH</MenuItem>
               </Select>
+              <FormHelperText
+                helperText={getError("currency")}
+              ></FormHelperText>
             </FormControl>
           </Grid>
         </Grid>
@@ -83,11 +82,17 @@ export default function TransInfo(props) {
             </Typography>
             <TextField
               required
-              id="amount_tran"
-              name="amount_tran"
+              id="amount"
+              name="amount"
+              type="number"
+              placeholder="Ex: 0.0047"
               fullWidth
-              value={currency != 0 ? "0.347895" : "-"}
-              disabled={true}
+              value={amount}
+              disabled={disable}
+              onChange={handleChange}
+              inputProps={{ min: "0" }}
+              helperText={getError("amount")}
+              error={error}
             />
           </Grid>
         </Grid>
@@ -99,28 +104,33 @@ export default function TransInfo(props) {
         <Grid container spacing={2} className={classes.my_1}>
           <Grid item xs={12} sm={6}>
             <Typography variant="h6" gutterBottom className="title label_title">
-              Amount
+              Name
             </Typography>
             <TextField
               required
-              id="amount_bene"
-              name="amount_bene"
-              placeholder="Ex: 0.0047"
+              id="b_name"
+              name="b_name"
+              type="text"
               fullWidth
+              value={b_name}
               disabled={disable}
+              onChange={handleChange}
+              helperText={getError("b_name")}
+              error={error}
             />
           </Grid>
         </Grid>
         <Grid container spacing={2} className={classes.my_1}>
           <Grid item xs={12} sm={6}>
             <Typography variant="h6" gutterBottom className="title label_title">
-              beneficiary VASP
+              beneficiary VASP Code
             </Typography>
-            <FormControl variant="" fullWidth>
+            <FormControl fullWidth required error={error}>
               <Select
-                id="bene-vasp"
+                id="vasp"
+                name="vasp"
                 value={vasp}
-                onChange={handleVasp}
+                onChange={handleChange}
                 displayEmpty
                 inputProps={{ "aria-label": "Without label" }}
                 classes={{ root: classes.root }}
@@ -129,8 +139,8 @@ export default function TransInfo(props) {
                 <MenuItem value="" disabled>
                   Select
                 </MenuItem>
-                <MenuItem value={1}>VASP in USA</MenuItem>
-                <MenuItem value={2}>VASP in JP</MenuItem>
+                <MenuItem value={"VASP in USA"}>VASP in USA</MenuItem>
+                <MenuItem value={"VASP in JP"}>VASP in JP</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -140,11 +150,15 @@ export default function TransInfo(props) {
             </Typography>
             <TextField
               required
-              id="bene_address"
-              name="bene_address"
-              fullWidth
+              id="address"
+              name="address"
               placeholder="0x0b696FEB926675a2f8B55644A1669b43b9924C03"
+              fullWidth
+              value={address}
               disabled={disable}
+              onChange={handleChange}
+              error={error}
+              helperText={getError("address")}
             />
           </Grid>
         </Grid>

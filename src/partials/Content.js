@@ -157,17 +157,45 @@ function Content() {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
   const [value, setValue] = React.useState(0);
-  const [save, setSave] = React.useState("");
+  const [originInfo, setOriginInfo] = React.useState({
+    name: "David Beckham",
+    o_vasp: "VASP in USA",
+    o_address: "0x05ECAf39376088D7C8bF1aCc06018D7C8bF1aCc0601",
+    phy_address: "Bahnhofstrasse 665, 8001 Zurich, Switzerland",
+    birth: "1975-05-02",
+    identity: "-",
+    identity_num: "-",
+  });
+  const [transferInfo, setTransferInfo] = React.useState({
+    currency: "",
+    vasp: "",
+  });
+  const [clickCount, setClickCount] = React.useState(0);
   const [clickAccept, setClickAccept] = React.useState(false);
+  const [bo_vasp, setBovasp] = React.useState("-");
   const [disable, setDisable] = React.useState(false);
-  console.log(`save2 = ${save}`);
+  //const { handleSubmit } = props;
+  const handleChange = (event) => {
+    const obj = { ...transferInfo };
+    obj[event.target.name] = event.target.value;
+    setTransferInfo(obj);
+  };
   const handleSend = () => {
     setValue(value + 1);
     setActiveStep(activeStep + 1);
-    setSave(save);
+    setBovasp(originInfo.o_vasp);
   };
+  // const handleSend = () => {
+  //   handleSubmit();
+  //   setValue(value + 1);
+  //   setActiveStep(activeStep + 1);
+  //   setBovasp(originInfo.o_vasp);
+  // };
   const handleDycrypt = () => {
     setActiveStep(activeStep + 1);
+  };
+  const handleClick = () => {
+    setClickCount(clickCount + 1);
   };
   const handleAccept = () => {
     setValue(0);
@@ -180,41 +208,59 @@ function Content() {
     setActiveStep(activeStep + 1);
     setDisable(true);
   };
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
   function getStepContent(getSteps) {
     switch (getSteps) {
       case 0:
         return (
           <Originator
-            onSend={handleSend}
+            bo_vasp={bo_vasp}
+            handleSend={handleSend}
             activeStep={activeStep}
+            originInfo={originInfo}
+            transferInfo={transferInfo}
+            handleChange={handleChange}
+            value={value}
             clickAccept={clickAccept}
             disable={disable}
-            save={save}
           />
         );
       case 1:
         return (
           <BeneInfo
+            onClick={handleClick}
             onDycrypt={handleDycrypt}
             onAccept={handleAccept}
             onReject={handleReject}
+            originInfo={originInfo}
+            transferInfo={transferInfo}
+            clickCount={clickCount}
+            activeStep={activeStep}
           />
         );
       default:
         throw new Error("Unknown step");
     }
   }
+  const description = () => {
+    if (activeStep === 0) {
+      return "Prepare Data";
+    } else if (activeStep === 1) {
+      return "Verify Signature";
+    } else if (activeStep === 2) {
+      return "Confirm Transfer";
+    } else {
+      return "Receive Certificate";
+    }
+  };
   return (
     <React.Fragment>
       <div className="container">
         <div className={classes.root}>
           <div className={classes.stepBlock}>
             <Typography variant="h5" className={classes.textCenter}>
-              Description text
+              {description()}
             </Typography>
+            {console.log(`activeStep= ${activeStep}`)}
             <Stepper
               alternativeLabel
               activeStep={activeStep}
@@ -225,8 +271,16 @@ function Content() {
                 <Step
                   key={label}
                   onClick={() => {
-                    if (activeStep > 0) {
+                    if (activeStep === 1 && clickCount === 1) {
+                      setActiveStep(0);
+                      setClickCount(0);
+                      setValue(0);
+                    } else if (activeStep === 2) {
+                      setActiveStep(activeStep - 1); //activeStep+-*/   === ==       =
+                      setClickCount(0); //clickCount === 0 => true / false
+                    } else if (activeStep > 0) {
                       setActiveStep(activeStep - 1);
+                      setValue(value - 1);
                     }
                   }}
                 >
@@ -236,7 +290,6 @@ function Content() {
                 </Step>
               ))}
             </Stepper>
-            {console.log(`activeStep= ${activeStep}`)}
           </div>
           <Grid container spacing={3}>
             {/* VASP & Info */}
@@ -246,7 +299,7 @@ function Content() {
                 className={(classes.root, classes.leftPadding)}
               >
                 <div>
-                  <StyledTabs value={value} centered disable>
+                  <StyledTabs value={value} centered>
                     <StyledTab label="Originator VASP" value={0} />
                     <StyledTab label="Beneficiary Info" value={1} />
                   </StyledTabs>
@@ -258,7 +311,12 @@ function Content() {
             {/* Bridge Service */}
             <Grid item xs={12} md={4}>
               <Paper elevation={0} className={classes.root}>
-                <Bridge activeStep={activeStep} clickAccept={clickAccept} />
+                <Bridge
+                  activeStep={activeStep}
+                  clickAccept={clickAccept}
+                  transferInfo={transferInfo}
+                  bo_vasp={bo_vasp}
+                />
               </Paper>
             </Grid>
           </Grid>

@@ -12,6 +12,12 @@ const inputStyles = makeStyles({
   marginBottom: {
     marginBottom: "18px",
   },
+  accept: {
+    color: "#049956",
+  },
+  reject: {
+    color: "#CC2A32",
+  },
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +36,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Bridge(props) {
-  function OriVASP() {
+  const classes = useStyles();
+  const { activeStep, clickAccept, transferInfo, bo_vasp } = props;
+  const { vasp } = transferInfo;
+  function OriVASP(props) {
     const classes = inputStyles();
     return (
       <div className={classes.marginBottom}>
@@ -40,10 +49,11 @@ function Bridge(props) {
         <TextField
           id="origin_vasp_code"
           name="origin_vasp_code"
-          defaultValue="-"
+          value={bo_vasp}
           fullWidth
           InputProps={{ readOnly: true }}
         />
+        {console.log(`bo_vasp = ${bo_vasp}`)}
       </div>
     );
   }
@@ -57,7 +67,8 @@ function Bridge(props) {
         <TextField
           id="bene_vasp_code"
           name="bene_vasp_code"
-          value={activeStep > 0 ? props.vasp : "-"}
+          defaultValue="-"
+          value={activeStep > 0 ? vasp : "-"}
           fullWidth
           InputProps={{ readOnly: true }}
         />
@@ -66,8 +77,9 @@ function Bridge(props) {
   }
   function Result(props) {
     const classes = inputStyles();
-    function value() {
+    const value = () => {
       if (activeStep === 3 && clickAccept === true) {
+        //return {a:"ACCEPT",c:'a'};
         return "ACCEPT";
       } else if (activeStep === 3 && clickAccept !== true) {
         return "REJECT";
@@ -76,27 +88,36 @@ function Bridge(props) {
       } else {
         return "-";
       }
-    }
+    };
+    const color = () => {
+      if (activeStep === 3 && clickAccept === true) {
+        return "accept";
+      } else if (activeStep === 3 && clickAccept !== true) {
+        return "reject";
+      }
+    };
     return (
       <div className={classes.marginBottom}>
         <Typography variant="h6" gutterBottom className="title label_title">
           Result
         </Typography>
+        {console.log(`color = ${color()}`)}
         <TextField
           id="result"
           name="result"
-          defaultValue="-"
           fullWidth
-          InputProps={{ readOnly: true }}
+          //InputProps={{ readOnly: true, color: "yellow" }}
+          inputProps={{ readOnly: true, className: color() }}
           value={value()}
+          //className={color()}
+          //style={{ color: color() }}
+          //style={{ color: "blue" }}
         />
         {console.log(`clickAccept = ${clickAccept}`)}
-        {console.log(`activeStep = ${activeStep}`)}
       </div>
     );
   }
-  const classes = useStyles();
-  const { activeStep, clickAccept, vasp } = props;
+
   return (
     <React.Fragment>
       <Typography variant="h5" className={classes.capitalize}>
@@ -104,11 +125,11 @@ function Bridge(props) {
       </Typography>
       <Paper elevation={0} className={classes.root}>
         <form action="">
+          {/* {console.log(`o_vasp = ${o_vasp}`)} */}
           <OriVASP />
           <BeneVASP />
           <Result />
           {activeStep > 0 ? <Code /> : null}
-          {console.log(`activeStep = ${activeStep}`)}
         </form>
       </Paper>
     </React.Fragment>

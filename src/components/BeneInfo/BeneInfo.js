@@ -1,28 +1,11 @@
 import React from "react";
-//import { Icon } from '@material-ui/core'
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import PrivateInfo from "./Private";
-
-const transcations = [
-  { name: "Beneficiary Vasp Code", detail: "VASPUSNY" },
-  {
-    name: "Originator Address",
-    detail: "0x05ECAf39376088D7C8bF1aCc06018D7C8bF1aCc0601",
-  },
-  { name: "Originator VASP Code", detail: "VASPJPJT" },
-  {
-    name: "Beneficiary Address",
-    detail: "0x0b696FEB926675a2f8B55644A1668D7C8bF1aCc060",
-  },
-  { name: "Transaction Currency", detail: "0x8000003c" },
-  { name: "Amount", detail: "0.347895" },
-];
 
 const useStyles = makeStyles((theme) => ({
   padding: {
@@ -75,28 +58,48 @@ const wordBreak = {
 
 export default function BeneInfo(props) {
   const classes = useStyles();
-  const [verify, setVerify] = React.useState(false);
-  const [clickCount, setClickCount] = React.useState(0);
-  const { onAccept, onReject } = props;
-  // const handleClick =()=>{
-  //                  setClickCount(clickCount+1)
-  //             props.onDycrypt();
-  // } 做很多事的第2種寫法
+  const { onAccept, onReject, transferInfo, originInfo, clickCount } = props;
+  const { currency, amount, vasp, address } = transferInfo;
+  const { o_vasp, o_address } = originInfo;
+  const transcations = [
+    { name: "Beneficiary Vasp Code", detail: vasp },
+    {
+      name: "Originator Address",
+      detail: o_address,
+    },
+    { name: "Originator VASP Code", detail: o_vasp },
+    {
+      name: "Beneficiary Address",
+      detail: address,
+    },
+    { name: "Transaction Currency", detail: currency },
+    { name: "Amount", detail: amount },
+  ];
+  const VeriText = () => {
+    return (
+      <ListItem style={{ padding: 0, color: "#34C174" }} disableGutters="true">
+        {clickCount === 0 ? null : (
+          <ListItem disableGutters="true">
+            <CheckCircleRoundedIcon style={TestIcon} />
+            <ListItem style={{ fontFamily: "Open Sans", paddingLeft: "0" }}>
+              Verify Success!
+            </ListItem>
+          </ListItem>
+        )}
+      </ListItem>
+    );
+  };
   const Click = () => {
     return (
       <Typography>
         {clickCount < 2 ? (
           <TestBtn
             onClick={() => {
-              //   clickCount > 2 ?
-              //   props.onDycrypt() :
-              // setClickCount(clickCount+1)
-              //console.log(`clickCount = ${clickCount}`)
               if (clickCount === 1) {
                 props.onDycrypt();
                 //回傳父層（Content.js）使 activeStep 增加數值（打勾）
               }
-              setClickCount(clickCount + 1);
+              props.onClick();
             }}
             variant="contained"
             className="btn btn-primary"
@@ -110,32 +113,10 @@ export default function BeneInfo(props) {
 
   return (
     <React.Fragment>
+      {console.log(`transferInfo= ${transferInfo}`)}
       <ListItem disableGutters="true">
-        <ListItem
-          style={{ padding: 0, color: "#34C174" }}
-          disableGutters="true"
-        >
-          {clickCount === 0 ? null : (
-            <ListItem disableGutters="true">
-              <CheckCircleRoundedIcon style={TestIcon} />
-              <ListItem style={{ fontFamily: "Open Sans", paddingLeft: "0" }}>
-                Verify Success!
-              </ListItem>
-            </ListItem>
-          )}
-        </ListItem>
-        {Click()}
-        {/* <Typography>
-                {verify ? (
-                    <TestBtn onClick={handleChange} variant="contained" className="btn btn-primary">
-                        Decrypt
-                    </TestBtn>
-                    ) : (
-                    <TestBtn onClick={() => setVerify(true)} variant="contained" className="btn btn-primary">
-                        Verify
-                    </TestBtn>
-                )}
-                </Typography> */}
+        {VeriText(props)}
+        {Click(props)}
       </ListItem>
       <div className="border_form">
         <Typography variant="h6" gutterBottom className="title">
@@ -213,7 +194,12 @@ export default function BeneInfo(props) {
       </div>
       {/* <PrivateInfo /> */}
       {clickCount === 2 ? (
-        <PrivateInfo onAccept={onAccept} onReject={onReject} />
+        <PrivateInfo
+          onAccept={onAccept}
+          onReject={onReject}
+          originInfo={originInfo}
+          transferInfo={transferInfo}
+        />
       ) : null}
     </React.Fragment>
   );

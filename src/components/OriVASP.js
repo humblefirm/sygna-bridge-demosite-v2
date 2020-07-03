@@ -17,31 +17,74 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Originator(props) {
   const classes = useStyles();
-  const { activeStep, clickAccept, save, disable } = props;
-  console.log(`save1 = ${save}`);
+  const {
+    activeStep,
+    clickAccept,
+    disable,
+    originInfo,
+    transferInfo,
+    handleChange,
+    handleSend,
+  } = props;
+  const [inputErrors, setInputErrors] = React.useState({});
+  const getError = (field) => inputErrors[field];
+  const [error, hasError] = React.useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const isValid = form.checkValidity(); // 目前的表單資料是不是有效的
+    // const isValid = true;
+    const formData = new FormData(form); //表單的資料拿出來
+
+    const validationMessages = Array.from(formData.keys()).reduce(
+      (acc, key) => {
+        // console.log(`key = ${key}`);
+        acc[key] = form.elements[key].validationMessage;
+        return acc;
+      },
+      {}
+    );
+    setInputErrors(validationMessages);
+    hasError(true);
+    if (!isValid) {
+      return;
+    } else {
+      handleSend();
+    }
+    //something
+  };
   return (
     <React.Fragment>
       <main className={classes.layout}>
         {activeStep === 3 ? (
           <BeneResult activeStep={activeStep} clickAccept={clickAccept} />
         ) : null}
-        <TransInfo disable={disable} save={save} />
-        <OriginInfo />
-        {/* {console.log(`activeStep = ${activeStep}`)} */}
-        <div className={classes.buttons}>
-          {activeStep === 3 ? null : (
-            <Button
-              variant="contained"
-              onClick={() => {
-                props.onSend();
-              }}
-              //   只做一件事
-              className="btn btn-primary"
-            >
-              Send
-            </Button>
-          )}
-        </div>
+        <form autoComplete="off" noValidate onSubmit={handleSubmit}>
+          <TransInfo
+            disable={disable}
+            transferInfo={transferInfo}
+            handleChange={handleChange}
+            getError={getError}
+            error={error}
+          />
+
+          {activeStep === 3 ? null : <OriginInfo originInfo={originInfo} />}
+          <div className={classes.buttons}>
+            {activeStep === 3 ? null : (
+              <Button
+                variant="contained"
+                type={"submit"}
+                onClick={() => {
+                  //props.onSend();
+                }}
+                className="btn btn-primary"
+              >
+                Send
+              </Button>
+            )}
+          </div>
+        </form>
       </main>
     </React.Fragment>
   );
