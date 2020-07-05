@@ -1,19 +1,21 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import "typeface-noto-sans";
-import "typeface-open-sans";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import 'typeface-noto-sans';
+import 'typeface-open-sans';
+import { defaultOriginatorInfo } from '../../config';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    fontSize: "14px",
-    color: "#222b45",
-    boxSizing: "border-box",
+    fontSize: '14px',
+    color: '#CC2A32',
+    boxSizing: 'border-box',
   },
   my_1: {
     marginTop: theme.spacing(1),
@@ -24,20 +26,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function OriginInfo(props) {
+export default function OriginInfo() {
   const classes = useStyles();
-  const { originInfo } = props;
   const {
     name,
-    o_vasp,
-    o_address,
+    vasp_code,
+    address,
     phy_address,
     birth,
     identity,
     identity_num,
-  } = originInfo;
+  } = defaultOriginatorInfo;
+
   return (
     <React.Fragment>
+      <CssBaseline />
       <div className="border_form boder_form_done">
         <Typography variant="h6" gutterBottom className="title">
           originator info
@@ -47,14 +50,7 @@ export default function OriginInfo(props) {
             <Typography variant="h6" gutterBottom className="title label_title">
               name
             </Typography>
-            <TextField
-              required
-              id="name"
-              name="name"
-              value={name}
-              fullWidth
-              disabled
-            />
+            <TextField id="name" name="name" value={name} fullWidth disabled />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Typography variant="h6" gutterBottom className="title label_title">
@@ -62,16 +58,16 @@ export default function OriginInfo(props) {
             </Typography>
             <FormControl fullWidth>
               <Select
-                id="o_vasp"
-                name="o_vasp"
-                value={o_vasp}
+                id="vasp_code"
+                name="vasp_code"
+                value={vasp_code}
                 displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
+                inputProps={{ 'aria-label': 'Without label' }}
                 classes={{ root: classes.root }}
                 disabled
               >
-                <MenuItem value={o_vasp} disabled>
-                  {o_vasp}
+                <MenuItem value={vasp_code} disabled>
+                  {vasp_code}
                 </MenuItem>
               </Select>
             </FormControl>
@@ -86,9 +82,8 @@ export default function OriginInfo(props) {
               required
               id="o_address"
               name="o_address"
-              value={o_address}
+              value={address}
               fullWidth
-              defaultValue="0x0b696FEB926675a2f8B55644A1669b43b9924C03"
               disabled
             />
           </Grid>
@@ -104,7 +99,6 @@ export default function OriginInfo(props) {
               name="phy_address"
               value={phy_address}
               fullWidth
-              defaultValue="Bahnhofstrasse 665, 8001 Zurich, Switzerland"
               disabled
             />
           </Grid>

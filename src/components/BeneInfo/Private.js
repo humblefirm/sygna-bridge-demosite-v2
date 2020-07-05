@@ -1,45 +1,48 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { defaultOriginatorInfo } from '../../config';
 
 const useStyles = makeStyles((theme) => ({
   padding: {
-    padding: "0 10px",
+    padding: '0 10px',
   },
   buttons: {
-    paddingTop: "30px",
-    textAlign: "center",
+    paddingTop: '30px',
+    textAlign: 'center',
   },
 }));
 
 const marginTop = {
-  marginTop: "30px",
+  marginTop: '30px',
 };
 
 const divider = {
-  display: "block",
-  borderBottom: "1px solid #C5CEE0",
-  margin: "7px 0",
+  display: 'block',
+  borderBottom: '1px solid #C5CEE0',
+  margin: '7px 0',
 };
 
 const deepBlue = {
-  borderColor: "#006FB1",
-  color: "#006FB1",
+  borderColor: '#006FB1',
+  color: '#006FB1',
 };
 
 export default function PrivateInfo(props) {
   const classes = useStyles();
-  const { originInfo, transferInfo } = props;
-  const { name, phy_address, birth, identity, identity_num } = originInfo;
-  const { b_name } = transferInfo;
+  const { beneficiary_name } = props;
+
   const transactions = [
-    { name: "Name", detail: name },
-    { name: "Date of birth", detail: birth },
-    { name: "Physical Address", detail: phy_address },
-    { name: "Unique Identity", detail: identity },
-    { name: "National Identity Number", detail: identity_num },
+    { name: 'Name', detail: defaultOriginatorInfo.name },
+    { name: 'Date of birth', detail: defaultOriginatorInfo.birth },
+    { name: 'Physical Address', detail: defaultOriginatorInfo.phy_address },
+    { name: 'Unique Identity', detail: defaultOriginatorInfo.identity },
+    {
+      name: 'National Identity Number',
+      detail: defaultOriginatorInfo.identity_num,
+    },
   ];
   return (
     <React.Fragment>
@@ -77,7 +80,7 @@ export default function PrivateInfo(props) {
             </Typography>
           </Grid>
           <Grid item xs={8} md={9}>
-            <Typography style={deepBlue}>{b_name}</Typography>
+            <Typography style={deepBlue}>{beneficiary_name}</Typography>
           </Grid>
         </Grid>
       </div>

@@ -1,17 +1,17 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import TransInfo from "./OriVasp/TransferInfo";
-import OriginInfo from "./OriVasp/OriginInfo";
-import Button from "@material-ui/core/Button";
-import BeneResult from "./BeneInfo/BeneResult";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TransInfo from './OriVasp/TransferInfo';
+import OriginInfo from './OriVasp/OriginInfo';
+import Button from '@material-ui/core/Button';
+import BeneResult from './BeneInfo/BeneResult';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   layout: {
-    width: "auto",
+    width: 'auto',
   },
   buttons: {
-    paddingTop: "30px",
-    textAlign: "center",
+    paddingTop: '30px',
+    textAlign: 'center',
   },
 }));
 
@@ -21,16 +21,14 @@ export default function Originator(props) {
     activeStep,
     clickAccept,
     disable,
-    originInfo,
     transferInfo,
-    handleChange,
-    handleSend,
-    error,
+    onChange,
+    onSend,
     inputErrors,
     setInputErrors,
+    signedData,
   } = props;
 
-  const getError = (field) => inputErrors[field];
   //const [error, hasError] = React.useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,40 +42,38 @@ export default function Originator(props) {
         acc[key] = form.elements[key].validationMessage;
         return acc;
       },
-      {}
+      {},
     );
     if (!isValid) {
       setInputErrors(validationMessages);
       props.onError();
       return;
-    } else {
-      handleSend();
     }
-    //something
+    onSend();
   };
   return (
     <React.Fragment>
       <main className={classes.layout}>
         {activeStep === 3 ? (
-          <BeneResult activeStep={activeStep} clickAccept={clickAccept} />
+          <BeneResult
+            activeStep={activeStep}
+            clickAccept={clickAccept}
+            signedData={signedData}
+          />
         ) : null}
         <form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <TransInfo
             disable={disable}
             transferInfo={transferInfo}
-            handleChange={handleChange}
-            getError={getError}
-            error={error}
+            onChange={onChange}
+            inputErrors={inputErrors}
           />
-          {activeStep === 3 ? null : <OriginInfo originInfo={originInfo} />}
+          {activeStep === 3 ? null : <OriginInfo />}
           <div className={classes.buttons}>
             {activeStep === 3 ? null : (
               <Button
                 variant="contained"
-                type={"submit"}
-                onClick={() => {
-                  //props.onSend();
-                }}
+                type={'submit'}
                 className="btn btn-primary"
               >
                 Send

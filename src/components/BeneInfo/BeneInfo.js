@@ -1,87 +1,101 @@
-import React from "react";
-import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import ListItem from "@material-ui/core/ListItem";
-import PrivateInfo from "./Private";
+import React from 'react';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import ListItem from '@material-ui/core/ListItem';
+import PrivateInfo from './Private';
 
 const useStyles = makeStyles((theme) => ({
   padding: {
-    padding: "0 10px",
+    padding: '0 10px',
   },
 }));
 
 const TestBtn = withStyles({
   root: {
-    marginBottom: "0",
-    padding: "8px 15px",
+    marginBottom: '0',
+    padding: '8px 15px',
     lineHeight: 1.5,
-    fontSize: "14px",
-    "&:hover": {
-      boxShadow: "none",
+    fontSize: '14px',
+    '&:hover': {
+      boxShadow: 'none',
     },
-    "&:active": {
-      boxShadow: "none",
+    '&:active': {
+      boxShadow: 'none',
     },
   },
 })(Button);
 
 const TestIcon = {
-  marginRight: "5px",
-  fontSize: "32px",
+  marginRight: '5px',
+  fontSize: '32px',
 };
 
 const TestBlu = withStyles({
   root: {
-    borderColor: "#006FB1",
-    color: "#006FB1",
-    wordWrap: "break-word",
+    borderColor: '#006FB1',
+    color: '#006FB1',
+    wordWrap: 'break-word',
   },
 })(Typography);
 
 const divider = {
-  display: "block",
-  borderBottom: "1px solid #C5CEE0",
-  margin: "7px 0",
+  display: 'block',
+  borderBottom: '1px solid #C5CEE0',
+  margin: '7px 0',
 };
 
 const deepBlue = {
-  borderColor: "#006FB1",
-  color: "#006FB1",
+  borderColor: '#006FB1',
+  color: '#006FB1',
 };
 
 const wordBreak = {
-  wordWrap: "break-word",
+  wordWrap: 'break-word',
 };
 
 export default function BeneInfo(props) {
   const classes = useStyles();
-  const { onAccept, onReject, transferInfo, originInfo, clickCount } = props;
-  const { currency, amount, vasp, address } = transferInfo;
-  const { o_vasp, o_address } = originInfo;
+  const {
+    onAccept,
+    onReject,
+    signedData,
+    clickCount,
+    beneficiary_name,
+  } = props;
+
+  const {
+    originator_vasp,
+    beneficiary_vasp,
+    currency_id,
+    amount,
+  } = signedData.transaction;
+
+  const { private_info, signature, transfer_id, data_dt } = signedData;
+
   const transcations = [
-    { name: "Beneficiary Vasp Code", detail: vasp },
+    { name: 'Beneficiary Vasp Code', detail: beneficiary_vasp.vasp_code },
     {
-      name: "Originator Address",
-      detail: o_address,
+      name: 'Originator Address',
+      detail: originator_vasp.addrs[0].address,
     },
-    { name: "Originator VASP Code", detail: o_vasp },
+    { name: 'Originator VASP Code', detail: originator_vasp.vasp_code },
     {
-      name: "Beneficiary Address",
-      detail: address,
+      name: 'Beneficiary Address',
+      detail: beneficiary_vasp.addrs[0].address,
     },
-    { name: "Transaction Currency", detail: currency },
-    { name: "Amount", detail: amount },
+    { name: 'Transaction Currency', detail: currency_id },
+    { name: 'Amount', detail: amount },
   ];
   const VeriText = () => {
     return (
-      <ListItem style={{ padding: 0, color: "#34C174" }} disableGutters="true">
+      <ListItem style={{ padding: 0, color: '#34C174' }} disableGutters="true">
         {clickCount === 0 ? null : (
           <ListItem disableGutters="true">
             <CheckCircleRoundedIcon style={TestIcon} />
-            <ListItem style={{ fontFamily: "Open Sans", paddingLeft: "0" }}>
+            <ListItem style={{ fontFamily: 'Open Sans', paddingLeft: '0' }}>
               Verify Success!
             </ListItem>
           </ListItem>
@@ -104,7 +118,7 @@ export default function BeneInfo(props) {
             variant="contained"
             className="btn btn-primary"
           >
-            {clickCount === 0 ? "Verfiy" : "Decrypt"}
+            {clickCount === 0 ? 'Verfiy' : 'Decrypt'}
           </TestBtn>
         ) : null}
       </Typography>
@@ -113,7 +127,6 @@ export default function BeneInfo(props) {
 
   return (
     <React.Fragment>
-      {console.log(`transferInfo= ${transferInfo}`)}
       <ListItem disableGutters="true">
         {VeriText(props)}
         {Click(props)}
@@ -130,7 +143,7 @@ export default function BeneInfo(props) {
           </Grid>
           <Grid item xs={8} md={9}>
             <TestBlu style={deepBlue} className={classes.root}>
-              04bb2aae0e33fbe50ffb6121375a4e04bb2aae0e33fbe50ffb6121375a4e04bb2aae0e33fbe50ffb6121375a4e04bb2aae0e33fbe50ffb6121375a4e04bb2aae0e33fbe50ffb6121375a4e
+              {private_info}
             </TestBlu>
           </Grid>
         </Grid>
@@ -160,9 +173,7 @@ export default function BeneInfo(props) {
             </Typography>
           </Grid>
           <Grid item xs={8} md={9}>
-            <Typography style={(deepBlue, wordBreak)}>
-              2019-08-15T10:28:10.364Z
-            </Typography>
+            <Typography style={(deepBlue, wordBreak)}>{data_dt}</Typography>
           </Grid>
         </Grid>
         <div style={divider}></div>
@@ -173,9 +184,7 @@ export default function BeneInfo(props) {
             </Typography>
           </Grid>
           <Grid item xs={8} md={9}>
-            <Typography style={(deepBlue, wordBreak)}>
-              9eee630c20a2aa894373216b32343c9eee630c20a2aa
-            </Typography>
+            <Typography style={(deepBlue, wordBreak)}>{signature}</Typography>
           </Grid>
         </Grid>
         <div style={divider}></div>
@@ -186,9 +195,7 @@ export default function BeneInfo(props) {
             </Typography>
           </Grid>
           <Grid item xs={8} md={9}>
-            <Typography style={(deepBlue, wordBreak)}>
-              01ca7589-f697-4637-931e-aa8922-931e-aa8922
-            </Typography>
+            <Typography style={(deepBlue, wordBreak)}>{transfer_id}</Typography>
           </Grid>
         </Grid>
       </div>
@@ -197,8 +204,7 @@ export default function BeneInfo(props) {
         <PrivateInfo
           onAccept={onAccept}
           onReject={onReject}
-          originInfo={originInfo}
-          transferInfo={transferInfo}
+          beneficiary_name={beneficiary_name}
         />
       ) : null}
     </React.Fragment>
