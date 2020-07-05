@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/CoolBitX-Technology/sygna-bridge-demosite-v2/precache-manifest.0dbf445dbd1b3b17cbfb3302e033a820.js"
+  "/CoolBitX-Technology/sygna-bridge-demosite-v2/demo/precache-manifest.1106756740cb27cf421284b1eeb46a1c.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -33,7 +33,7 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/CoolBitX-Technology/sygna-bridge-demosite-v2/index.html"), {
+workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/CoolBitX-Technology/sygna-bridge-demosite-v2/demo/index.html"), {
   
   blacklist: [/^\/_/,/\/[^/?]+\.[^/]+$/],
 });
