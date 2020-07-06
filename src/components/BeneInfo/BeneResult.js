@@ -76,7 +76,7 @@ export default function BeneResult(props) {
         </Grid>
       </div>
       <div style={grayTxt}>
-        *This is the result from Beneficary VASP base on information below
+        *This is the result from Beneficary VASP based on information below
       </div>
     </React.Fragment>
   );

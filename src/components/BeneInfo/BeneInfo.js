@@ -118,7 +118,7 @@ export default function BeneInfo(props) {
             variant="contained"
             className="btn btn-primary"
           >
-            {clickCount === 0 ? 'Verfiy' : 'Decrypt'}
+            {clickCount === 0 ? 'Verify' : 'Decrypt'}
           </TestBtn>
         ) : null}
       </Typography>

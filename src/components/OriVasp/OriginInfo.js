@@ -34,7 +34,7 @@ export default function OriginInfo() {
     address,
     phy_address,
     birth,
-    place,
+    place_of_birth,
     identity,
     identity_num,
   } = defaultOriginatorInfo;
@@ -124,9 +124,9 @@ export default function OriginInfo() {
               Place of birth
             </Typography>
             <TextField
-              id="place"
-              name="place"
-              value={place}
+              id="place_of_birth"
+              name="place_of_birth"
+              value={place_of_birth}
               fullWidth
               disabled
             />

@@ -4,6 +4,7 @@ const defaultOriginatorInfo = {
   address: '0x05ECAf39376088D7C8bF1aCc06018D7C8bF1aCc0601',
   phy_address: 'Bahnhofstrasse 665, 8001 Zurich, Switzerland',
   birth: '1975-05-02',
+  place_of_birth: 'Switzerland',
   identity: '-',
   identity_num: '-',
 };

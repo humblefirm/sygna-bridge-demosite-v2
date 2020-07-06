@@ -360,7 +360,7 @@ function Content(props) {
                 <div>
                   <StyledTabs value={value} centered>
                     <StyledTab label="Originator VASP" value={0} />
-                    <StyledTab label="Beneficiary Info" value={1} />
+                    <StyledTab label="Beneficiary VASP" value={1} />
                   </StyledTabs>
                   <Typography className={classes.padding} />
                 </div>

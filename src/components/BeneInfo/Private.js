@@ -37,7 +37,7 @@ export default function PrivateInfo(props) {
   const transactions = [
     { name: 'Name', detail: defaultOriginatorInfo.name },
     { name: 'Date of birth', detail: defaultOriginatorInfo.birth },
-    { name: 'Place of birth', detail: defaultOriginatorInfo.place },
+    { name: 'Place of birth', detail: defaultOriginatorInfo.place_of_birth },
     { name: 'Physical Address', detail: defaultOriginatorInfo.phy_address },
     { name: 'Unique Identity', detail: defaultOriginatorInfo.identity },
     {
