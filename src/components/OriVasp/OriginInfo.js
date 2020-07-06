@@ -33,6 +33,7 @@ export default function OriginInfo(props) {
     o_address,
     phy_address,
     birth,
+    place,
     identity,
     identity_num,
   } = originInfo;
@@ -88,7 +89,6 @@ export default function OriginInfo(props) {
               name="o_address"
               value={o_address}
               fullWidth
-              defaultValue="0x0b696FEB926675a2f8B55644A1669b43b9924C03"
               disabled
             />
           </Grid>
@@ -104,7 +104,6 @@ export default function OriginInfo(props) {
               name="phy_address"
               value={phy_address}
               fullWidth
-              defaultValue="Bahnhofstrasse 665, 8001 Zurich, Switzerland"
               disabled
             />
           </Grid>
@@ -118,6 +117,20 @@ export default function OriginInfo(props) {
               id="birth"
               name="birth"
               value={birth}
+              fullWidth
+              disabled
+            />
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} className={classes.my_1}>
+          <Grid item xs={12}>
+            <Typography variant="h6" gutterBottom className="title label_title">
+              Place of birth
+            </Typography>
+            <TextField
+              id="place"
+              name="place"
+              value={place}
               fullWidth
               disabled
             />

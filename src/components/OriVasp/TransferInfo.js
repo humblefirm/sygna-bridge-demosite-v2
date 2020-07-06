@@ -38,9 +38,9 @@ export default function TransInfo(props) {
   const marginTop = {
     marginTop: "30px",
   };
-  const { disable, transferInfo, handleChange, getError } = props;
+  const { disable, transferInfo, handleChange, inputErrors } = props;
   const { currency, amount, b_name, vasp, address } = transferInfo;
-
+  const getError = (field) => inputErrors[field];
   return (
     <React.Fragment>
       <div style={margin}>
@@ -62,6 +62,7 @@ export default function TransInfo(props) {
                 inputProps={{ "aria-label": "Without label" }}
                 classes={{ root: classes.root }}
                 disabled={disable}
+                helperText={getError("currency")}
               >
                 <MenuItem value="" disabled>
                   Select
@@ -69,9 +70,12 @@ export default function TransInfo(props) {
                 <MenuItem value={"BTC"}>BTC</MenuItem>
                 <MenuItem value={"ETH"}>ETH</MenuItem>
               </Select>
-              {getError === true ? (
+              {/* {currency === "" ? (
                 <FormHelperText>Here's my helper text</FormHelperText>
-              ) : null}
+              ) : null} */}
+              {/* <FormHelperText helperText={getError("currency")}>
+                Here's my helper text
+              </FormHelperText> */}
             </FormControl>
           </Grid>
         </Grid>

@@ -32,11 +32,19 @@ const deepBlue = {
 export default function PrivateInfo(props) {
   const classes = useStyles();
   const { originInfo, transferInfo } = props;
-  const { name, phy_address, birth, identity, identity_num } = originInfo;
+  const {
+    name,
+    phy_address,
+    birth,
+    place,
+    identity,
+    identity_num,
+  } = originInfo;
   const { b_name } = transferInfo;
   const transactions = [
     { name: "Name", detail: name },
     { name: "Date of birth", detail: birth },
+    { name: "Place of birth", detail: place },
     { name: "Physical Address", detail: phy_address },
     { name: "Unique Identity", detail: identity },
     { name: "National Identity Number", detail: identity_num },

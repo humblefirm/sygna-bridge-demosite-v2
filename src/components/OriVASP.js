@@ -28,9 +28,10 @@ export default function Originator(props) {
     error,
     inputErrors,
     setInputErrors,
+    getError,
   } = props;
 
-  const getError = (field) => inputErrors[field];
+  //const getError = (field) => inputErrors[field];
   //const [error, hasError] = React.useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,6 +69,7 @@ export default function Originator(props) {
             handleChange={handleChange}
             getError={getError}
             error={error}
+            inputErrors={inputErrors}
           />
           {activeStep === 3 ? null : <OriginInfo originInfo={originInfo} />}
           <div className={classes.buttons}>
