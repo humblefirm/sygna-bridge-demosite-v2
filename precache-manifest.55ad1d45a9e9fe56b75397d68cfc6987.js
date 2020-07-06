@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a055b396c17dc64aaf6367295b2f58ca",
+    "revision": "5f9d1c08f37fbcc6ab557d645b0faf7f",
     "url": "/sygna-bridge-demosite-v2/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sygna-bridge-demosite-v2/static/css/2.2d9d4da0.chunk.css"
   },
   {
-    "revision": "cf2e5bd85a9a2a3fea09",
+    "revision": "3674e3c2c47b2a35e395",
     "url": "/sygna-bridge-demosite-v2/static/css/main.68865fd2.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sygna-bridge-demosite-v2/static/js/2.3a0ce6ef.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "cf2e5bd85a9a2a3fea09",
-    "url": "/sygna-bridge-demosite-v2/static/js/main.33ccacc4.chunk.js"
+    "revision": "3674e3c2c47b2a35e395",
+    "url": "/sygna-bridge-demosite-v2/static/js/main.a674ce47.chunk.js"
   },
   {
     "revision": "039b093f096ac1e14a2a",
