@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/sygna-bridge-demosite-v2/precache-manifest.14c0b39fc735ab13b358c1f859a8e315.js"
+  "/sygna-bridge-demosite-v2/precache-manifest.a0e6ce0d3d3119870b8495ceca800906.js"
 );
 
 self.addEventListener('message', (event) => {
