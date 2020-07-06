@@ -164,7 +164,6 @@ function Content(props) {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
   const [value, setValue] = React.useState(0);
-
   const [transferInfo, setTransferInfo] = React.useState({
     currency_id: '',
     originator_vasp_code: '',

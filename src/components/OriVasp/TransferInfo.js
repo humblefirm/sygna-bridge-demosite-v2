@@ -69,6 +69,7 @@ export default function TransInfo(props) {
                 inputProps={{ 'aria-label': 'Without label' }}
                 classes={{ root: classes.root }}
                 disabled={disable}
+                helperText={getError('currency')}
               >
                 <MenuItem value="" disabled>
                   Select

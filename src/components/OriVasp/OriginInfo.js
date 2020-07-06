@@ -34,6 +34,7 @@ export default function OriginInfo() {
     address,
     phy_address,
     birth,
+    place,
     identity,
     identity_num,
   } = defaultOriginatorInfo;
@@ -112,6 +113,20 @@ export default function OriginInfo() {
               id="birth"
               name="birth"
               value={birth}
+              fullWidth
+              disabled
+            />
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} className={classes.my_1}>
+          <Grid item xs={12}>
+            <Typography variant="h6" gutterBottom className="title label_title">
+              Place of birth
+            </Typography>
+            <TextField
+              id="place"
+              name="place"
+              value={place}
               fullWidth
               disabled
             />
