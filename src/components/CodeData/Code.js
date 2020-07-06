@@ -18,6 +18,7 @@ function Code(props) {
           enableClipboard={false}
           collapseStringsAfterLength={25}
           collapsed={2}
+          style={{ wordBreak: 'break-all' }}
         />
       )}
     </React.Fragment>
