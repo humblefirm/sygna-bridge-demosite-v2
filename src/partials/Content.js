@@ -294,7 +294,8 @@ function Content(props) {
           />
         );
       default:
-        throw new Error('Unknown step');
+        // throw new Error('Unknown step');
+        console.log('Unknown step');
     }
   }
   const description = () => {
@@ -327,6 +328,9 @@ function Content(props) {
                 <Step
                   key={label}
                   onClick={() => {
+                    if (activeStep > 2) {
+                      return;
+                    }
                     if (activeStep === 1 && clickCount === 1) {
                       setActiveStep(0);
                       setClickCount(0);
