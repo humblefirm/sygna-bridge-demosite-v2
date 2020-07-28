@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/sygna-bridge-demosite-v2/static/css/main.d50bd595.chunk.css",
-    "main.js": "/sygna-bridge-demosite-v2/static/js/main.e350ebf6.chunk.js",
-    "main.js.map": "/sygna-bridge-demosite-v2/static/js/main.e350ebf6.chunk.js.map",
+    "main.js": "/sygna-bridge-demosite-v2/static/js/main.665bdedb.chunk.js",
+    "main.js.map": "/sygna-bridge-demosite-v2/static/js/main.665bdedb.chunk.js.map",
     "runtime-main.js": "/sygna-bridge-demosite-v2/static/js/runtime-main.9f40b00f.js",
     "runtime-main.js.map": "/sygna-bridge-demosite-v2/static/js/runtime-main.9f40b00f.js.map",
-    "static/css/2.2d9d4da0.chunk.css": "/sygna-bridge-demosite-v2/static/css/2.2d9d4da0.chunk.css",
-    "static/js/2.6c78e985.chunk.js": "/sygna-bridge-demosite-v2/static/js/2.6c78e985.chunk.js",
-    "static/js/2.6c78e985.chunk.js.map": "/sygna-bridge-demosite-v2/static/js/2.6c78e985.chunk.js.map",
+    "static/css/2.bead52e8.chunk.css": "/sygna-bridge-demosite-v2/static/css/2.bead52e8.chunk.css",
+    "static/js/2.2a0a3a6b.chunk.js": "/sygna-bridge-demosite-v2/static/js/2.2a0a3a6b.chunk.js",
+    "static/js/2.2a0a3a6b.chunk.js.map": "/sygna-bridge-demosite-v2/static/js/2.2a0a3a6b.chunk.js.map",
     "index.html": "/sygna-bridge-demosite-v2/index.html",
-    "precache-manifest.2bd31b6e7a19d7b651bdf990c34c80e1.js": "/sygna-bridge-demosite-v2/precache-manifest.2bd31b6e7a19d7b651bdf990c34c80e1.js",
+    "precache-manifest.2edb69a0efccf24ea9c797fc236f292b.js": "/sygna-bridge-demosite-v2/precache-manifest.2edb69a0efccf24ea9c797fc236f292b.js",
     "service-worker.js": "/sygna-bridge-demosite-v2/service-worker.js",
-    "static/css/2.2d9d4da0.chunk.css.map": "/sygna-bridge-demosite-v2/static/css/2.2d9d4da0.chunk.css.map",
+    "static/css/2.bead52e8.chunk.css.map": "/sygna-bridge-demosite-v2/static/css/2.bead52e8.chunk.css.map",
     "static/css/main.d50bd595.chunk.css.map": "/sygna-bridge-demosite-v2/static/css/main.d50bd595.chunk.css.map",
-    "static/js/2.6c78e985.chunk.js.LICENSE.txt": "/sygna-bridge-demosite-v2/static/js/2.6c78e985.chunk.js.LICENSE.txt",
+    "static/js/2.2a0a3a6b.chunk.js.LICENSE.txt": "/sygna-bridge-demosite-v2/static/js/2.2a0a3a6b.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/sygna-bridge-demosite-v2/static/media/logo.50c0a88f.svg",
     "static/media/index.css": "/sygna-bridge-demosite-v2/static/media/open-sans-latin-800italic.c62c3eea.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.9f40b00f.js",
-    "static/css/2.2d9d4da0.chunk.css",
-    "static/js/2.6c78e985.chunk.js",
+    "static/css/2.bead52e8.chunk.css",
+    "static/js/2.2a0a3a6b.chunk.js",
     "static/css/main.d50bd595.chunk.css",
-    "static/js/main.e350ebf6.chunk.js"
+    "static/js/main.665bdedb.chunk.js"
   ]
 }

@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "af0a26f1bf2da07eaf23a84a585cf0c7",
+    "revision": "cb347209360b109b2df1ad6d7e526107",
     "url": "/sygna-bridge-demosite-v2/index.html"
   },
   {
-    "revision": "4b972b96a255a6341ea5",
-    "url": "/sygna-bridge-demosite-v2/static/css/2.2d9d4da0.chunk.css"
+    "revision": "89c1cb80fb30c4204c12",
+    "url": "/sygna-bridge-demosite-v2/static/css/2.bead52e8.chunk.css"
   },
   {
-    "revision": "b7ffadb2b3135e7a648c",
+    "revision": "c6bb330dc180393a390a",
     "url": "/sygna-bridge-demosite-v2/static/css/main.d50bd595.chunk.css"
   },
   {
-    "revision": "4b972b96a255a6341ea5",
-    "url": "/sygna-bridge-demosite-v2/static/js/2.6c78e985.chunk.js"
+    "revision": "89c1cb80fb30c4204c12",
+    "url": "/sygna-bridge-demosite-v2/static/js/2.2a0a3a6b.chunk.js"
   },
   {
     "revision": "4ab85d8c00ac0e4a6b9f0e03c7b60b5e",
-    "url": "/sygna-bridge-demosite-v2/static/js/2.6c78e985.chunk.js.LICENSE.txt"
+    "url": "/sygna-bridge-demosite-v2/static/js/2.2a0a3a6b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b7ffadb2b3135e7a648c",
-    "url": "/sygna-bridge-demosite-v2/static/js/main.e350ebf6.chunk.js"
+    "revision": "c6bb330dc180393a390a",
+    "url": "/sygna-bridge-demosite-v2/static/js/main.665bdedb.chunk.js"
   },
   {
     "revision": "039b093f096ac1e14a2a",
